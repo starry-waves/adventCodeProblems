@@ -6,6 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "problemSolving.hpp"
 
 @interface Testing : XCTestCase
 
@@ -26,6 +27,15 @@
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     // XCTest Documentation
     // https://developer.apple.com/documentation/xctest
+    
+    std::vector <std::string> d = {"L68"};
+    auto [x , y] = Password::Break(d, 0);
+    
+    XCTAssertEqual (x, 'L');
+    XCTAssertEqual (y, 68);
+
+//        XCTAssertEqual(Mathematics().add(1, 1), 2);
+    
 }
 
 - (void)testPerformanceExample {

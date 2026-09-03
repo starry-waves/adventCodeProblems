@@ -20,18 +20,44 @@
 
 /* Begin PBXFileReference section */
 		930C2F563048DC6F0074CD16 /* adventCodeProblems */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = adventCodeProblems; sourceTree = BUILT_PRODUCTS_DIR; };
+		937FAD0C3048E000003B7BDC /* Testing.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		937FAD1A3048E540003B7BDC /* Exceptions for "adventCodeProblems" folder in "Testing" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				problemSolving.cpp,
+			);
+			target = 937FAD0B3048E000003B7BDC /* Testing */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		930C2F583048DC6F0074CD16 /* adventCodeProblems */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				937FAD1A3048E540003B7BDC /* Exceptions for "adventCodeProblems" folder in "Testing" target */,
+			);
 			path = adventCodeProblems;
+			sourceTree = "<group>";
+		};
+		937FAD0D3048E000003B7BDC /* Testing */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Testing;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		930C2F533048DC6F0074CD16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		937FAD093048E000003B7BDC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				930C2F583048DC6F0074CD16 /* adventCodeProblems */,
+				937FAD0D3048E000003B7BDC /* Testing */,
 				930C2F573048DC6F0074CD16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				930C2F563048DC6F0074CD16 /* adventCodeProblems */,
+				937FAD0C3048E000003B7BDC /* Testing.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +110,28 @@
 			productReference = 930C2F563048DC6F0074CD16 /* adventCodeProblems */;
 			productType = "com.apple.product-type.tool";
 		};
+		937FAD0B3048E000003B7BDC /* Testing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 937FAD103048E000003B7BDC /* Build configuration list for PBXNativeTarget "Testing" */;
+			buildPhases = (
+				937FAD083048E000003B7BDC /* Sources */,
+				937FAD093048E000003B7BDC /* Frameworks */,
+				937FAD0A3048E000003B7BDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				937FAD0D3048E000003B7BDC /* Testing */,
+			);
+			name = Testing;
+			packageProductDependencies = (
+			);
+			productName = Testing;
+			productReference = 937FAD0C3048E000003B7BDC /* Testing.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +142,9 @@
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					930C2F553048DC6F0074CD16 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					937FAD0B3048E000003B7BDC = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -111,12 +164,30 @@
 			projectRoot = "";
 			targets = (
 				930C2F553048DC6F0074CD16 /* adventCodeProblems */,
+				937FAD0B3048E000003B7BDC /* Testing */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		937FAD0A3048E000003B7BDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		930C2F523048DC6F0074CD16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		937FAD083048E000003B7BDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +328,34 @@
 			};
 			name = Release;
 		};
+		937FAD113048E000003B7BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rpg.Testing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		937FAD123048E000003B7BDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rpg.Testing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -274,6 +373,15 @@
 			buildConfigurations = (
 				930C2F5E3048DC6F0074CD16 /* Debug */,
 				930C2F5F3048DC6F0074CD16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		937FAD103048E000003B7BDC /* Build configuration list for PBXNativeTarget "Testing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				937FAD113048E000003B7BDC /* Debug */,
+				937FAD123048E000003B7BDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
