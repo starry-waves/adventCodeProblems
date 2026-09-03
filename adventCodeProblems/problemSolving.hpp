@@ -20,8 +20,11 @@
 
 class Password{
 public:
-    static std::pair <char, int> Break(std::vector <std::string> dialRotations, int index);
-    static int AddRotation(char direction, int dial, int &result);
+//    static std::tuple <char, int, int> Break(std::vector <std::string> dialRotations, int index, int &countClicks);
+//    static std::pair <int, int> AddRotation(char direction, int dial, int &result, int &countClicks);
+    
+ static std::pair <int , int> Break(std::vector <std::string> dialRotations, int index, int &result, int &count);
+    
 };
 
 #endif /* problemSolving_hpp */

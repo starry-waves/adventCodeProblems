@@ -28,11 +28,17 @@
     // XCTest Documentation
     // https://developer.apple.com/documentation/xctest
     
-    std::vector <std::string> d = {"L68"};
-    auto [x , y] = Password::Break(d, 0);
+    std::vector <std::string> d = {"L105"};
     
-    XCTAssertEqual (x, 'L');
-    XCTAssertEqual (y, 68);
+    int result = 5;
+    int count = 0;
+    
+    Password::Break(d, 0, result, count);
+    
+    XCTAssertEqual(result, 0);
+    XCTAssertEqual(count, 2);
+  
+
 
 //        XCTAssertEqual(Mathematics().add(1, 1), 2);
     

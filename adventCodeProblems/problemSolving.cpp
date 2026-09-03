@@ -11,39 +11,82 @@
 //define the methods and stuff here
 
 //break the dial rotation instructions into 2 parts: the L and R char, and the rotation number
-std::pair <char , int> Password::Break(std::vector <std::string> dialRotations, int index){
-   
+std:: pair <int , int> Password::Break(std::vector <std::string> dialRotations, int index, int &result, int &count){
         char direction;
         int rotation;
+        int countClicks = 0;
+       
    
-    
     direction = dialRotations[index].at(0);
-    rotation = std::stoi(dialRotations[index].substr(1, dialRotations.size()- 1)) % 100 ;
+    rotation = std::stoi(dialRotations[index].substr(1, dialRotations[index].size() - 1) );//remember %100 was here
     //std::stoi converts a string into an int
-   
-    return {direction, rotation};
-}
-
-int Password::AddRotation(char direction, int rotation, int &result){
-    
-    switch(direction){
-        case 'L':
-            result -= rotation;
-            if(result < 0){
-                result += 100;
-            }
-            break;
-        case 'R':
-            result += rotation;
-            if(result >= 100){
-                result -= 100;
-            }
-            break;
+//    if(result == 0){
+//        countClicks --;
+//    }
+    if((rotation % 100 == 0) || (rotation / 100 > 0)){
+        countClicks += (rotation / 100) ;
     }
     
+    rotation %= 100;
     
-    return result;
+    switch(direction){
+            
+            case 'L':
+                result -= rotation;
+            if(result <= 0){
+                if(result == 0){
+                    count ++;
+                }
+                if(result < 0){
+                    countClicks++;
+                }
+                result += 100;
+            }
+                break;
+            
+            case 'R':
+                result += rotation;
+            if (result >= 100){
+                if(result == 100){
+                    count++;
+                }
+                if(result > 100){
+                    countClicks += 1;
+                }
+                result -= 100;
+            }
+                break;
+        }
+    
+    if (countClicks > 0){
+        count +=  countClicks;
+    }
+ 
+    return {count , result};
 }
+
+//std::pair <int, int> Password::AddRotation(char direction, int rotation, int &result, int &countClicks){
+//    
+//    switch(direction){
+//        case 'L':
+//            result -= rotation;
+//            if(result < 0){
+//                countClicks += 1;
+//                result += 100;
+//            }
+//            break;
+//        case 'R':
+//            result += rotation;
+//            if(result >= 100){
+//                countClicks += 1;
+//                result -= 100;
+//            }
+//            break;
+//    }
+//    
+//    
+//    return {result , countClicks};
+//}
 
 
 
