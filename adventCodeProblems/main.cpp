@@ -8,10 +8,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
+#include <regex>
+#include <ranges>
 
 int main(int argc, char* argv[]) {
-    // insert code here...
+    
     std::cout << "Hello, World!\n";
     std::string input = "text.txt";
     if (argc > 1) {
@@ -28,53 +29,39 @@ int main(int argc, char* argv[]) {
     std::string line;
     
     long count = 0;
+    //save number of invalid ids here
     
     while(getline(file, line, ',')){
-        
-//        long wholeID1 = std::stol(line.substr(line[0], line.find('-') ) );
-//        long sizeHalf = line.size() / 2;
-        
-//        get the 2 nums
+
         std::string wholeID1S = line.substr(0 , line.find('-'));
         std::string wholeID2S = line.substr( (line.find('-') + 1), line.find('-') );
+        //get the ids without '-'
         
         long wholeID1N = std::stol(wholeID1S);
         long wholeID2N = std::stol(wholeID2S);
+        //save the 2 ids as longs bc the numbers are too big
         
-       
-        
-      //split nums, check for equality
-        for (long i = wholeID1N; i <= wholeID2N; i++){
+        for(long i : std::views::iota(wholeID1N, wholeID2N + 1)){
+            //loop over all numbers in the range (why range was imported)
             
-            std::string wholeNumS = std::to_string(i);
+            std::string input = std::to_string(i);
+            //save number as a string to use regex
             
-            if( (wholeNumS.size() % 2)  == 0 ){
-                
-                std::string halfNum1S = wholeNumS.substr(0, wholeNumS.size() / 2);
-                std::string halfNum2S = wholeNumS.substr( ( (wholeNumS.size() / 2)), wholeNumS.size() / 2 );
+            std::regex pattern (R"((.+)\1+)");
+            //R "(any character repeated at least once) \this group is repeated at least once)"
             
-                long wholeNum = std::stol(wholeNumS);
-                long halfnum1 = std::stol(halfNum1S);
-                long halfnum2 = std::stol(halfNum2S);
-            
-                if(halfnum1 == halfnum2){
-                count += wholeNum;
-                }
+            if(std::regex_match(input, pattern) == true){
+                count+= i;
             }
-            continue;
-                
-            
+            //if the patter matches for the full string, add the number we're on to count
             
         }
-                
-    
        
     }
     
     std::cout << "the sum of invalid ids is: " << count << '\n';
     
-    
-        
     return 0;
-    //run code here
+  
 }
+
