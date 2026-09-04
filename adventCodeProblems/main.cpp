@@ -27,43 +27,51 @@ int main(int argc, char* argv[]) {
     
     std::string line;
     
-    int pos = 50;
-    int count = 0;
+    long count = 0;
     
-    while(getline(file, line)){
-        const char direction = line[0];
-        int rotation = std::stoi(line.substr(1 , line.size() - 1));
-        int modrotation = rotation % 100;
-        count += rotation / 100;
-        int oldpos = pos;
-        switch(direction){
-            case 'L':
-                pos -=modrotation;
-                if(pos < 0){
-                    if (oldpos != 0){
-                        count++;
-                    }
-                    
-                    pos += 100;
-                }
+    while(getline(file, line, ',')){
+        
+//        long wholeID1 = std::stol(line.substr(line[0], line.find('-') ) );
+//        long sizeHalf = line.size() / 2;
+        
+//        get the 2 nums
+        std::string wholeID1S = line.substr(0 , line.find('-'));
+        std::string wholeID2S = line.substr( (line.find('-') + 1), line.find('-') );
+        
+        long wholeID1N = std::stol(wholeID1S);
+        long wholeID2N = std::stol(wholeID2S);
+        
+       
+        
+      //split nums, check for equality
+        for (long i = wholeID1N; i <= wholeID2N; i++){
+            
+            std::string wholeNumS = std::to_string(i);
+            
+            if( (wholeNumS.size() % 2)  == 0 ){
                 
-                if(pos == 0){
-                    count++;
+                std::string halfNum1S = wholeNumS.substr(0, wholeNumS.size() / 2);
+                std::string halfNum2S = wholeNumS.substr( ( (wholeNumS.size() / 2)), wholeNumS.size() / 2 );
+            
+                long wholeNum = std::stol(wholeNumS);
+                long halfnum1 = std::stol(halfNum1S);
+                long halfnum2 = std::stol(halfNum2S);
+            
+                if(halfnum1 == halfnum2){
+                count += wholeNum;
                 }
-                break;
+            }
+            continue;
                 
-            case 'R':
-                pos += modrotation;
-                if(pos >= 100){
-                    count++;
-                    pos -=100;
-                }
-                break;
+            
+            
         }
+                
+    
        
     }
     
-    std::cout << "the password is: " << count << '\n';
+    std::cout << "the sum of invalid ids is: " << count << '\n';
     
     
         
