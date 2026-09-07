@@ -8,12 +8,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <regex>
-#include <ranges>
+#include <vector>
+#include <algorithm>
 
 int main(int argc, char* argv[]) {
     
-    std::cout << "Hello, World!\n";
     std::string input = "text.txt";
     if (argc > 1) {
            input = argv[1];
@@ -28,38 +27,32 @@ int main(int argc, char* argv[]) {
     
     std::string line;
     
-    long count = 0;
-    //save number of invalid ids here
-    
-    while(getline(file, line, ',')){
+    int total = 0;
 
-        std::string wholeID1S = line.substr(0 , line.find('-'));
-        std::string wholeID2S = line.substr( (line.find('-') + 1), line.find('-') );
-        //get the ids without '-'
-        
-        long wholeID1N = std::stol(wholeID1S);
-        long wholeID2N = std::stol(wholeID2S);
-        //save the 2 ids as longs bc the numbers are too big
-        
-        for(long i : std::views::iota(wholeID1N, wholeID2N + 1)){
-            //loop over all numbers in the range (why range was imported)
-            
-            std::string input = std::to_string(i);
-            //save number as a string to use regex
-            
-            std::regex pattern (R"((.+)\1+)");
-            //R "(any character repeated at least once) \this group is repeated at least once)"
-            
-            if(std::regex_match(input, pattern) == true){
-                count+= i;
-            }
-            //if the patter matches for the full string, add the number we're on to count
-            
+    while(getline(file, line, '\n')){
+        std::vector <int> nums;
+        nums.reserve(nums.size());
+    
+        for (const char numC: line){
+            nums.push_back(numC - '0');
+
         }
-       
+        
+      
+        const auto target1 = std::max_element(std::begin(line), std::prev(std::end(line)) );
+        const auto target2 = std::max_element(std::next(target1), std::end(line) );
+        
+        total += (*target1 - '0') * 10 + (*target2 - '0');
+        
+        std::cout << "the total is: " << total << '\n';
+        
     }
     
-    std::cout << "the sum of invalid ids is: " << count << '\n';
+
+     
+    
+    
+    std::cout << "the total output voltage is: " << total << '\n';
     
     return 0;
   
