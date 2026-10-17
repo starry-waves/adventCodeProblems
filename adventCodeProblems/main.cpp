@@ -28,36 +28,115 @@ int main(int argc, char* argv[]) {
     std::string line;
     
     std::size_t total = 0;
-
-    while(getline(file, line, '\n')){
-        std::vector <std::size_t> nums;
-        nums.reserve(nums.size());
     
-        for (const char numC: line){
-            nums.push_back(numC - '0');
-
+    
+    std::vector<std::vector<char>> grid;
+    
+    while(getline(file, line, '\n')){
+        std::vector <char> row;
+        
+        for (const char c: line){
+            row.push_back(c);
         }
-        
-        const int digits = 12;
-        std::size_t joltage = 0;
-      
-        auto target = std::begin(line);
-        
-        for(int i = 0; i < digits; i++){
-        
-            target = std::max_element(target, std::prev(std::end(line), digits - i - 1));
-            joltage = joltage * 10 + (*target - '0');
-            target = std::next(target);
-            
-        }
-        total += joltage;
-        
-        
-        
-        std::cout << "the total is: " << total << '\n';
+        grid.push_back(row);
         
     }
     
+    for(int i = 0; const auto &row : grid){
+        for(int j = 0; const char &c: row){
+            std::size_t count = 0;
+                
+                if (c == '@'){
+                    if(i < grid.size() - 1 && j < grid[i].size() - 1){
+//                        std::cout << "\nwhats happening: " << j << '\n';
+                        if(grid[i][j + 1] == '@'){
+                        count++;
+                        }
+                        if(grid[i + 1][j] == '@'){
+                        count++;
+                        }
+                        if(grid[i + 1][j + 1] == '@'){
+                        count++;
+                        }
+                        if(j > 0){
+                            if(grid[i + 1][j - 1] == '@'){
+                                count++;
+                            }
+                            if(grid[i][j - 1] == '@'){
+                                count++;
+                            }
+                        }
+                        if(i > 0){
+                            if(grid[i - 1][j + 1] == '@'){
+                                count++;
+                            }
+                            if(grid[i - 1][j] == '@'){
+                                count++;
+                            }
+                        }
+                        if(i > 0 && j > 0){
+                            if(grid[i - 1][j - 1] == '@'){
+                                count++;
+                            }
+                        }
+                    }
+                    else if (j == grid[i].size() - 1){
+                    if(i > 0){
+                            if(grid[i - 1][j] == '@'){
+                            count++;
+                            }
+                            if(grid[i][j - 1] == '@'){
+                            count++;
+                            }
+                        if(grid[i - 1][j - 1] == '@'){
+                            count++;
+                        }
+                        }
+                
+                        if(i < grid.size() - 1){
+                            if(grid[i + 1][j] == '@'){
+                            count++;
+                            }
+                            if(grid[i + 1][j - 1] == '@'){
+                            count++;
+                            }
+                        }
+                    }
+                        else if (i == grid.size() - 1){
+                            if (grid[i - 1][j] == '@'){
+                                count++;
+                            }
+                            if(j > 0){
+                                if(grid[i - 1][j - 1] == '@'){
+                                    count++;
+                                }
+                                if(grid[i][j - 1] == '@'){
+                                    count++;
+                                }
+                            }
+                            if(j < grid[i].size()){
+                                if(grid[i - 1][j + 1] == '@'){
+                                    count++;
+                                }
+                                
+                                if(grid[i][j + 1] == '@'){
+                                    count++;
+                                }
+                            }
+                        }
+                       
+                    if (count < 4){
+                        total += 1;
+                    }
+                }
+            std::cout << j + 1 << ":" << '\n';
+            std::cout <<"the count is " << count << '\n';
+            std::cout << "the total is: " << total <<'\n';
+            j++;
+        }
+        std::cout << '\n' ;
+        i++;
+    }
         std::cout << "the total output voltage is: " << total << '\n';
     
     return 0;
